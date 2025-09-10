@@ -895,18 +895,25 @@ static void __nvoc_init_funcTable_KernelBif_1(KernelBif *pThis, RmHalspecOwner *
         pThis->__kbifCacheMnocSupport__ = &kbifCacheMnocSupport_b3696a;
     }
 
-    // kbifCacheVFInfo -- halified (3 hals) body
-    if (( ((chipHal_HalVarIdx >> 5) == 1UL) && ((1UL << (chipHal_HalVarIdx & 0x1f)) & 0xc0000000UL) )) /* ChipHal: GB100 | GB102 */ 
+    // kbifCacheVFInfo -- halified (4 hals) body
+    if (( ((rmVariantHal_HalVarIdx >> 5) == 0UL) && ((1UL << (rmVariantHal_HalVarIdx & 0x1f)) & 0x00000001UL) )) /* RmVariantHal: VF */ 
     {
-        pThis->__kbifCacheVFInfo__ = &kbifCacheVFInfo_GB100;
-    }
-    else if (( ((chipHal_HalVarIdx >> 5) == 1UL) && ((1UL << (chipHal_HalVarIdx & 0x1f)) & 0x01f0ffe0UL) )) /* ChipHal: TU102 | TU104 | TU106 | TU116 | TU117 | GA100 | GA102 | GA103 | GA104 | GA106 | GA107 | AD102 | AD103 | AD104 | AD106 | AD107 */ 
-    {
-        pThis->__kbifCacheVFInfo__ = &kbifCacheVFInfo_TU102;
+        pThis->__kbifCacheVFInfo__ = &kbifCacheVFInfo_b3696a;
     }
     else
     {
-        pThis->__kbifCacheVFInfo__ = &kbifCacheVFInfo_GH100;
+        if (( ((chipHal_HalVarIdx >> 5) == 1UL) && ((1UL << (chipHal_HalVarIdx & 0x1f)) & 0xc0000000UL) )) /* ChipHal: GB100 | GB102 */ 
+        {
+            pThis->__kbifCacheVFInfo__ = &kbifCacheVFInfo_GB100;
+        }
+        else if (( ((chipHal_HalVarIdx >> 5) == 1UL) && ((1UL << (chipHal_HalVarIdx & 0x1f)) & 0x01f0ffe0UL) )) /* ChipHal: TU102 | TU104 | TU106 | TU116 | TU117 | GA100 | GA102 | GA103 | GA104 | GA106 | GA107 | AD102 | AD103 | AD104 | AD106 | AD107 */ 
+        {
+            pThis->__kbifCacheVFInfo__ = &kbifCacheVFInfo_TU102;
+        }
+        else
+        {
+            pThis->__kbifCacheVFInfo__ = &kbifCacheVFInfo_GH100;
+        }
     }
 
     // kbifRestoreBar0 -- halified (3 hals) body
@@ -1113,7 +1120,7 @@ static void __nvoc_init_funcTable_KernelBif_1(KernelBif *pThis, RmHalspecOwner *
     {
         pThis->__kbifDoSecondaryBusHotReset__ = &kbifDoSecondaryBusHotReset_GH100;
     }
-} // End __nvoc_init_funcTable_KernelBif_1 with approximately 159 basic block(s).
+} // End __nvoc_init_funcTable_KernelBif_1 with approximately 160 basic block(s).
 
 
 // Initialize vtable(s) for 75 virtual method(s).

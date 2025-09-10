@@ -272,6 +272,8 @@ NV_STATUS osRmInitRm(void)
         return status;
     }
 
+    rm_check_s0ix_regkey_and_platform_support();
+
     // Setup any ThreadState defaults
     threadStateInitSetupFlags(THREAD_STATE_SETUP_FLAGS_ENABLED |
                               THREAD_STATE_SETUP_FLAGS_TIMEOUT_ENABLED |

@@ -703,6 +703,13 @@ int nv_drm_atomic_commit(struct drm_device *dev,
 #else
     drm_atomic_helper_swap_state(dev, state);
 #endif
+    /*
+     * Used to update legacy modeset state pointers to support UAPIs not updated
+     * by the core atomic modeset infrastructure.
+     *
+     * Example: /sys/class/drm/<card connector>/enabled
+     */
+    drm_atomic_helper_update_legacy_modeset_state(dev, state);
 
     /*
      * nv_drm_atomic_commit_internal() must not return failure after

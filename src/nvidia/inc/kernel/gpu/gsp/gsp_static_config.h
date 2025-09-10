@@ -218,6 +218,7 @@ typedef struct GspSystemInfo
     NvBool bRouteDispIntrsToCPU;
     NvU64  hostPageSize;
     NvBool bGspNocatEnabled;
+    NvBool bS0ixSupport;
     NvU16 virtualConfigBits;
 } GspSystemInfo;
 

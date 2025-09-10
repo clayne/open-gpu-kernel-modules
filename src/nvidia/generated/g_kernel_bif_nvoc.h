@@ -225,7 +225,7 @@ struct KernelBif {
     void (*__kbifCacheFlrSupport__)(struct OBJGPU *, struct KernelBif * /*this*/);  // halified (3 hals) body
     void (*__kbifCache64bBar0Support__)(struct OBJGPU *, struct KernelBif * /*this*/);  // halified (4 hals) body
     void (*__kbifCacheMnocSupport__)(struct OBJGPU *, struct KernelBif * /*this*/);  // halified (2 hals) body
-    void (*__kbifCacheVFInfo__)(struct OBJGPU *, struct KernelBif * /*this*/);  // halified (3 hals) body
+    void (*__kbifCacheVFInfo__)(struct OBJGPU *, struct KernelBif * /*this*/);  // halified (4 hals) body
     void (*__kbifRestoreBar0__)(struct OBJGPU *, struct KernelBif * /*this*/, void *, NvU32 *);  // halified (3 hals) body
     NvBool (*__kbifAnyBarsAreValid__)(struct OBJGPU *, struct KernelBif * /*this*/);  // halified (2 hals) body
     NV_STATUS (*__kbifRestoreBarsAndCommand__)(struct OBJGPU *, struct KernelBif * /*this*/);  // halified (3 hals) body
@@ -1301,6 +1301,10 @@ static inline void kbifCacheMnocSupport_b3696a(struct OBJGPU *pGpu, struct Kerne
 }
 
 void kbifCacheMnocSupport_GB100(struct OBJGPU *pGpu, struct KernelBif *pKernelBif);
+
+static inline void kbifCacheVFInfo_b3696a(struct OBJGPU *pGpu, struct KernelBif *pKernelBif) {
+    return;
+}
 
 void kbifCacheVFInfo_TU102(struct OBJGPU *pGpu, struct KernelBif *pKernelBif);
 

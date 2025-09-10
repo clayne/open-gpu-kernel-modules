@@ -110,6 +110,8 @@
 
 #define NV_DP_REGKEY_SKIP_SETTING_LINK_STATE_DURING_UNPLUG        "DP_SKIP_SETTING_LINK_STATE_DURING_UNPLUG"
 
+// This regkey ensures DPLib takes into account Displayport++ supports HDMI.
+#define NV_DP_REGKEY_HDMI_ON_DP_PLUS_PLUS                         "HDMI_ON_DP_PLUS_PLUS"
 
 // Data Base used to store all the regkey values.
 // The actual data base is declared statically in dp_evoadapter.cpp.
@@ -154,6 +156,7 @@ struct DP_REGKEY_DATABASE
     bool  bEnableLowerBppCheckForDsc;
     bool  bSkipSettingLinkStateDuringUnplug;
     bool  bEnableDevId;
+    bool  bHDMIOnDPPlusPlus;
 };
 
 extern struct DP_REGKEY_DATABASE dpRegkeyDatabase;

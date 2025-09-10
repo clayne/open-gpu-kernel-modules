@@ -151,6 +151,16 @@ void DPCDHALImpl2x::parseAndReadCaps()
 
     DPCDHALImpl::parseAndReadCaps();
 
+    // reset DP tunneling UHBR caps
+    caps2x.dpInTunnelingCaps.bUHBR_10GSupported = NV_FALSE;
+    caps2x.dpInTunnelingCaps.bUHBR_13_5GSupported = NV_FALSE;
+    caps2x.dpInTunnelingCaps.bUHBR_20GSupported = NV_FALSE;
+
+    // reset CableCaps
+    caps2x.cableCaps.bUHBR_10GSupported = NV_TRUE;
+    caps2x.cableCaps.bUHBR_13_5GSupported = NV_TRUE;
+    caps2x.cableCaps.bUHBR_20GSupported = NV_TRUE;
+
     // 02206h
     if (AuxRetry::ack == bus.read(NV_DPCD14_EXTENDED_MAIN_LINK_CHANNEL_CODING, &buffer[0], 1))
     {

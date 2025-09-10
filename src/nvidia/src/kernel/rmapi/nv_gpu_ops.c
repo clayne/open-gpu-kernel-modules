@@ -7694,7 +7694,7 @@ static NV_STATUS dupMemory(struct gpuDevice *device,
         // particular doesn't create IOMMU mappings required for the mapped GPU
         // to access the memory. That's a problem if the mapped GPU is different
         // from the GPU that the allocation was created under. Add them
-        // explicitly here and remove them when the memory is freed in n
+        // explicitly here and remove them when the memory is freed in
         // nvGpuOpsFreeDupedHandle(). Notably memdescMapIommu() refcounts the
         // mappings so it's ok to call it if the mappings are already there.
         //

@@ -209,11 +209,14 @@ static void nv_drm_output_poll_changed(struct drm_device *dev)
 static struct drm_framebuffer *nv_drm_framebuffer_create(
     struct drm_device *dev,
     struct drm_file *file,
-    #if defined(NV_DRM_HELPER_MODE_FILL_FB_STRUCT_HAS_CONST_MODE_CMD_ARG)
+#if defined(NV_DRM_FB_CREATE_TAKES_FORMAT_INFO)
+    const struct drm_format_info *info,
+#endif
+#if defined(NV_DRM_HELPER_MODE_FILL_FB_STRUCT_HAS_CONST_MODE_CMD_ARG)
     const struct drm_mode_fb_cmd2 *cmd
-    #else
+#else
     struct drm_mode_fb_cmd2 *cmd
-    #endif
+#endif
 )
 {
     struct drm_mode_fb_cmd2 local_cmd;
@@ -224,11 +227,14 @@ static struct drm_framebuffer *nv_drm_framebuffer_create(
     fb = nv_drm_internal_framebuffer_create(
             dev,
             file,
+#if defined(NV_DRM_FB_CREATE_TAKES_FORMAT_INFO)
+            info,
+#endif
             &local_cmd);
 
-    #if !defined(NV_DRM_HELPER_MODE_FILL_FB_STRUCT_HAS_CONST_MODE_CMD_ARG)
+#if !defined(NV_DRM_HELPER_MODE_FILL_FB_STRUCT_HAS_CONST_MODE_CMD_ARG)
     *cmd = local_cmd;
-    #endif
+#endif
 
     return fb;
 }
@@ -2046,13 +2052,13 @@ void nv_drm_register_drm_device(const nv_gpu_info_t *gpu_info)
 #endif
             nvKms->framebufferConsoleDisabled(nv_dev->pDevice);
         }
-        #if defined(NV_DRM_CLIENT_AVAILABLE)
+#if defined(NV_DRM_CLIENT_AVAILABLE)
 	    drm_client_setup(dev, NULL);
-        #elif defined(NV_DRM_FBDEV_TTM_AVAILABLE)
+#elif defined(NV_DRM_FBDEV_TTM_AVAILABLE)
         drm_fbdev_ttm_setup(dev, 32);
-        #elif defined(NV_DRM_FBDEV_GENERIC_AVAILABLE)
+#elif defined(NV_DRM_FBDEV_GENERIC_AVAILABLE)
         drm_fbdev_generic_setup(dev, 32);
-        #endif
+#endif
     }
 #endif /* defined(NV_DRM_FBDEV_AVAILABLE) */
 

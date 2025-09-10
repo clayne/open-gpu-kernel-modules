@@ -1054,23 +1054,23 @@ static inline NV_STATUS intrRestoreIntrRegValue(OBJGPU *pGpu, struct Intr *pIntr
 
 #define intrRestoreIntrRegValue_HAL(pGpu, pIntr, arg3, arg4, arg5) intrRestoreIntrRegValue(pGpu, pIntr, arg3, arg4, arg5)
 
-static inline NV_STATUS intrTriggerCpuDoorbellForVF_46f6a7(OBJGPU *pGpu, struct Intr *pIntr, NvU32 gfid) {
+static inline NV_STATUS intrTriggerCpuDoorbellForVF_46f6a7(OBJGPU *pGpu, struct Intr *pIntr, NvU32 gfid, NvBool bRearmIntr) {
     return NV_ERR_NOT_SUPPORTED;
 }
 
-NV_STATUS intrTriggerCpuDoorbellForVF_TU102(OBJGPU *pGpu, struct Intr *pIntr, NvU32 gfid);
+NV_STATUS intrTriggerCpuDoorbellForVF_TU102(OBJGPU *pGpu, struct Intr *pIntr, NvU32 gfid, NvBool bRearmIntr);
 
 
 #ifdef __nvoc_intr_h_disabled
-static inline NV_STATUS intrTriggerCpuDoorbellForVF(OBJGPU *pGpu, struct Intr *pIntr, NvU32 gfid) {
+static inline NV_STATUS intrTriggerCpuDoorbellForVF(OBJGPU *pGpu, struct Intr *pIntr, NvU32 gfid, NvBool bRearmIntr) {
     NV_ASSERT_FAILED_PRECOMP("Intr was disabled!");
     return NV_ERR_NOT_SUPPORTED;
 }
 #else //__nvoc_intr_h_disabled
-#define intrTriggerCpuDoorbellForVF(pGpu, pIntr, gfid) intrTriggerCpuDoorbellForVF_46f6a7(pGpu, pIntr, gfid)
+#define intrTriggerCpuDoorbellForVF(pGpu, pIntr, gfid, bRearmIntr) intrTriggerCpuDoorbellForVF_46f6a7(pGpu, pIntr, gfid, bRearmIntr)
 #endif //__nvoc_intr_h_disabled
 
-#define intrTriggerCpuDoorbellForVF_HAL(pGpu, pIntr, gfid) intrTriggerCpuDoorbellForVF(pGpu, pIntr, gfid)
+#define intrTriggerCpuDoorbellForVF_HAL(pGpu, pIntr, gfid, bRearmIntr) intrTriggerCpuDoorbellForVF(pGpu, pIntr, gfid, bRearmIntr)
 
 void intrRetriggerTopLevel_TU102(OBJGPU *pGpu, struct Intr *pIntr);
 

@@ -199,6 +199,7 @@ void ConnectorImpl::applyRegkeyOverrides(const DP_REGKEY_DATABASE& dpRegkeyDatab
     this->bEnableLowerBppCheckForDsc        = dpRegkeyDatabase.bEnableLowerBppCheckForDsc;
     this->bSkipSettingLinkStateDuringUnplug = dpRegkeyDatabase.bSkipSettingLinkStateDuringUnplug;
     this->bEnableDevId                      = dpRegkeyDatabase.bEnableDevId;
+    this->bHDMIOnDPPlusPlus                 = dpRegkeyDatabase.bHDMIOnDPPlusPlus;
 }
 
 void ConnectorImpl::setPolicyModesetOrderMitigation(bool enabled)
@@ -412,7 +413,16 @@ void ConnectorImpl::processNewDevice(const DiscoveryManager::Device & device,
     {
         case DISPLAY_PORT:
         case DISPLAY_PORT_PLUSPLUS: // DP port that supports DP and TMDS
-            connector = connectorDisplayPort;
+            if (bHDMIOnDPPlusPlus &&
+                existingDev &&
+                existingDev->connectorType == connectorHDMI)
+            {
+                connector = connectorHDMI;
+            }
+            else
+            {
+                connector = connectorDisplayPort;
+            }
             break;
 
         case ANALOG_VGA:

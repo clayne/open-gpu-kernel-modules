@@ -724,4 +724,25 @@ typedef struct NV208F_CTRL_FB_CONVERT_CHANNEL_PARAMS {
 
 #define NV208F_CTRL_FB_CHANNEL_CONVERSION_TYPE_LOGICAL_TO_PHYSICAL (0x00000000U)
 #define NV208F_CTRL_FB_CHANNEL_CONVERSION_TYPE_PHYSICAL_TO_LOGICAL (0x00000001U)
+
+/*
+ * NV208F_CTRL_CMD_FB_SET_ROW_REMAP_FAILURE_FLAG
+ *
+ * This command sets the status of row remap failure flag to the passed value.
+ *
+ *  value
+ *    The value to set for row remap failure flag
+ *
+ *  Possible status values returned are:
+ *    NV_OK
+ *    NV_ERR_NOT_SUPPORTED
+ */
+#define NV208F_CTRL_CMD_FB_SET_ROW_REMAP_FAILURE_FLAG              (0x208f051cU) /* finn: Evaluated from "(FINN_NV20_SUBDEVICE_DIAG_FB_INTERFACE_ID << 8) | NV208F_CTRL_FB_SET_ROW_REMAP_FAILURE_FLAG_PARAMS_MESSAGE_ID" */
+
+#define NV208F_CTRL_FB_SET_ROW_REMAP_FAILURE_FLAG_PARAMS_MESSAGE_ID (0x1cU)
+
+typedef struct NV208F_CTRL_FB_SET_ROW_REMAP_FAILURE_FLAG_PARAMS {
+    NvBool value;
+} NV208F_CTRL_FB_SET_ROW_REMAP_FAILURE_FLAG_PARAMS;
+
 /* _ctrl208ffb_h_ */
